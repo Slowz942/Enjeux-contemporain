@@ -3,294 +3,424 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SESAME — Enjeux Contemporains 2026</title>
+<title>SESAME — Enjeux Contemporains 2026 (V2)</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0c0f14;--surface:#151921;--surface2:#1c2230;--surface3:#232a38;--border:#2a3244;--text:#e8eaf0;--text2:#9aa3b8;--text3:#6b7590;--accent:#00b894;--accent2:#55efc4;--red:#ff6b6b;--orange:#fdcb6e;--blue:#74b9ff;--purple:#a29bfe;--pink:#fd79a8;--gradient1:linear-gradient(135deg,#00b894,#55efc4);--gradient2:linear-gradient(135deg,#6c5ce7,#a29bfe);--gradient3:linear-gradient(135deg,#e17055,#fab1a0);--gradient4:linear-gradient(135deg,#fdcb6e,#ffeaa7);--gradient5:linear-gradient(135deg,#74b9ff,#a29bfe);--gradient6:linear-gradient(135deg,#fd79a8,#fab1a0);--gradient7:linear-gradient(135deg,#00cec9,#81ecec)}
+:root{--bg:#0c0f14;--surface:#151921;--surface2:#1c2230;--surface3:#232a38;--border:#2a3244;--text:#e8eaf0;--text2:#9aa3b8;--text3:#6b7590;--accent:#00b894;--accent2:#55efc4;--red:#ff6b6b;--orange:#fdcb6e;--blue:#74b9ff;--purple:#a29bfe;--pink:#fd79a8;--g1:linear-gradient(135deg,#00b894,#55efc4);--g2:linear-gradient(135deg,#6c5ce7,#a29bfe);--g3:linear-gradient(135deg,#e17055,#fab1a0);--g4:linear-gradient(135deg,#fdcb6e,#ffeaa7);--g5:linear-gradient(135deg,#74b9ff,#a29bfe);--g6:linear-gradient(135deg,#fd79a8,#fab1a0);--g7:linear-gradient(135deg,#00cec9,#81ecec);--g8:linear-gradient(135deg,#636e72,#b2bec3)}
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}::selection{background:var(--accent);color:#fff}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(12,15,20,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px}
-.nav-logo{font-family:'DM Serif Display',serif;font-size:1.2rem;background:var(--gradient1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.nav-links{display:flex;gap:.4rem;flex-wrap:wrap}.nav-links button{background:none;border:1px solid var(--border);color:var(--text2);padding:.3rem .6rem;border-radius:6px;cursor:pointer;font-size:.7rem;font-family:'DM Sans',sans-serif;transition:all .2s}.nav-links button:hover,.nav-links button.active{border-color:var(--accent);color:var(--accent2);background:rgba(0,184,148,.1)}
-.progress-bar{position:fixed;top:60px;left:0;height:3px;z-index:101;background:var(--gradient1);transition:width .3s}
-.section{display:none;max-width:900px;margin:0 auto;padding:2rem 2rem 6rem;animation:fadeIn .5s ease}.section.active{display:block}@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.hero{min-height:45vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 2rem 3rem;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 40%,rgba(0,184,148,.12) 0%,transparent 50%),radial-gradient(circle at 70% 60%,rgba(108,92,231,.08) 0%,transparent 50%);animation:hg 8s ease-in-out infinite alternate}@keyframes hg{0%{transform:translate(0,0)}100%{transform:translate(-2%,2%)}}
-.hero-content{position:relative;z-index:1;max-width:700px}.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,5vw,3.5rem);line-height:1.15;margin-bottom:1rem}.hero h1 span{background:var(--gradient1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.hero p{color:var(--text2);font-size:1rem;margin-bottom:.3rem}
-.section-header{margin-bottom:2rem;padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:16px;position:relative;overflow:hidden}.section-header::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.section-header.b1::before{background:var(--gradient1)}.section-header.b2::before{background:var(--gradient2)}.section-header.b3::before{background:var(--gradient3)}.section-header.b4::before{background:var(--gradient4)}.section-header.b5::before{background:var(--gradient5)}.section-header.b6::before{background:var(--gradient6)}.section-header.b7::before{background:var(--gradient7)}
-.section-header .bloc-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent2);text-transform:uppercase;letter-spacing:2px;margin-bottom:.4rem}.section-header h2{font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:.3rem}.section-header p{color:var(--text2);font-size:.9rem}
-.lesson{margin-bottom:2rem;background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}.lesson-head{padding:1rem 1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background .2s}.lesson-head:hover{background:var(--surface2)}.lesson-head h3{font-family:'DM Serif Display',serif;font-size:1.15rem}.lesson-head .arrow{font-size:1.1rem;transition:transform .3s;color:var(--text3)}.lesson.open .lesson-head .arrow{transform:rotate(180deg)}.lesson-body{display:none;padding:0 1.2rem 1.2rem}.lesson.open .lesson-body{display:block;animation:fadeIn .3s}
-h4{font-family:'DM Serif Display',serif;font-size:1.05rem;margin:1.2rem 0 .6rem;color:var(--accent2)}p{margin-bottom:.6rem}
-.fact{background:var(--surface2);border-left:3px solid var(--accent);padding:.6rem 1rem;margin:.5rem 0;border-radius:0 8px 8px 0;font-size:.9rem}
-.fact .date{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent);display:block;margin-bottom:.2rem}
-.fact strong{color:var(--accent2)}
-.fact-hot{border-left-color:var(--red)}
-.fact-hot .date{color:var(--red)}
-.tip{background:rgba(0,184,148,.08);border:1px solid rgba(0,184,148,.25);border-radius:10px;padding:.8rem 1rem;margin:.8rem 0}.tip-title{font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:.4rem}
-.quiz-box{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin:1.2rem 0}.quiz-box h4{color:var(--orange);margin-top:0}
-.quiz-q{margin-bottom:.8rem;padding-bottom:.8rem;border-bottom:1px solid var(--border)}.quiz-q:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.quiz-q p{font-weight:600;margin-bottom:.4rem;font-size:.9rem}.quiz-q .options{display:flex;flex-wrap:wrap;gap:.4rem}
-.quiz-q .opt{padding:.35rem .75rem;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:.8rem;transition:all .2s;font-family:'JetBrains Mono',monospace}.quiz-q .opt:hover{border-color:var(--accent)}.quiz-q .opt.correct{border-color:var(--accent);background:rgba(0,184,148,.15);color:var(--accent2)}.quiz-q .opt.wrong{border-color:var(--red);background:rgba(255,107,107,.15);color:var(--red)}.quiz-q .opt.disabled{pointer-events:none;opacity:.6}
-.quiz-q .explanation{margin-top:.4rem;font-size:.8rem;color:var(--text2);display:none;padding:.4rem .6rem;background:var(--surface3);border-radius:6px}
-.nav-buttons{display:flex;justify-content:space-between;margin-top:2rem;gap:1rem}.nav-btn{padding:.7rem 1.2rem;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;transition:all .3s}.nav-btn:hover{border-color:var(--accent);background:var(--surface2)}.nav-btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.nav-btn.primary:hover{background:var(--accent2);color:var(--bg)}
-@media(max-width:700px){.nav{padding:0 .5rem}.nav-links button{font-size:.6rem;padding:.2rem .4rem}.hero{padding:5rem 1rem 2rem}.section{padding:1rem 1rem 4rem}.lesson-head h3{font-size:1rem}}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(12,15,20,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height:60px}.nav-logo{font-family:'DM Serif Display',serif;font-size:1.1rem;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+.nav-links{display:flex;gap:.3rem;flex-wrap:wrap}.nav-links button{background:none;border:1px solid var(--border);color:var(--text2);padding:.25rem .5rem;border-radius:6px;cursor:pointer;font-size:.65rem;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap}.nav-links button:hover,.nav-links button.active{border-color:var(--accent);color:var(--accent2);background:rgba(0,184,148,.1)}
+.progress-bar{position:fixed;top:60px;left:0;height:3px;z-index:101;background:var(--g1);transition:width .3s}
+.section{display:none;max-width:900px;margin:0 auto;padding:2rem 2rem 6rem;animation:fadeIn .4s ease}.section.active{display:block}@keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.hero{min-height:40vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 3rem;position:relative;overflow:hidden}.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 40%,rgba(0,184,148,.1) 0%,transparent 50%),radial-gradient(circle at 70% 60%,rgba(108,92,231,.07) 0%,transparent 50%)}.hero-content{position:relative;z-index:1;max-width:700px}.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;margin-bottom:.8rem}.hero h1 span{background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.hero p{color:var(--text2);font-size:.95rem;margin-bottom:.2rem}
+.sh{margin-bottom:2rem;padding:1.3rem;background:var(--surface);border:1px solid var(--border);border-radius:14px;position:relative;overflow:hidden}.sh::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.sh.c1::before{background:var(--g1)}.sh.c2::before{background:var(--g2)}.sh.c3::before{background:var(--g3)}.sh.c4::before{background:var(--g4)}.sh.c5::before{background:var(--g5)}.sh.c6::before{background:var(--g6)}.sh.c7::before{background:var(--g7)}.sh.c8::before{background:var(--g8)}
+.sh .bn{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--accent2);text-transform:uppercase;letter-spacing:2px;margin-bottom:.3rem}.sh h2{font-family:'DM Serif Display',serif;font-size:1.6rem;margin-bottom:.2rem}.sh p{color:var(--text2);font-size:.85rem}
+.ls{margin-bottom:1.8rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}.lh{padding:.9rem 1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background .2s}.lh:hover{background:var(--surface2)}.lh h3{font-family:'DM Serif Display',serif;font-size:1.05rem}.lh .ar{font-size:1rem;transition:transform .3s;color:var(--text3)}.ls.open .lh .ar{transform:rotate(180deg)}.lb{display:none;padding:0 1.1rem 1.1rem}.ls.open .lb{display:block;animation:fadeIn .3s}
+h4{font-family:'DM Serif Display',serif;font-size:.95rem;margin:1rem 0 .5rem;color:var(--accent2)}p{margin-bottom:.5rem;font-size:.9rem}
+.f{background:var(--surface2);border-left:3px solid var(--accent);padding:.5rem .9rem;margin:.4rem 0;border-radius:0 7px 7px 0;font-size:.85rem}.f .d{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);display:block;margin-bottom:.15rem}.f strong{color:var(--accent2)}.f.hot{border-left-color:var(--red)}.f.hot .d{color:var(--red)}
+.tip{background:rgba(0,184,148,.08);border:1px solid rgba(0,184,148,.2);border-radius:9px;padding:.7rem .9rem;margin:.7rem 0}.tip-t{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:.3rem}
+.trap{background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.2);border-radius:9px;padding:.7rem .9rem;margin:.7rem 0}.trap-t{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:1px;margin-bottom:.3rem}
+.qb{background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:1.1rem;margin:1rem 0}.qb h4{color:var(--orange);margin-top:0}
+.qq{margin-bottom:.7rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}.qq:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.qq p{font-weight:600;margin-bottom:.3rem;font-size:.85rem}.qq .os{display:flex;flex-wrap:wrap;gap:.35rem}
+.qq .o{padding:.3rem .7rem;border:1px solid var(--border);border-radius:7px;cursor:pointer;font-size:.78rem;transition:all .2s;font-family:'JetBrains Mono',monospace}.qq .o:hover{border-color:var(--accent)}.qq .o.c{border-color:var(--accent);background:rgba(0,184,148,.15);color:var(--accent2)}.qq .o.w{border-color:var(--red);background:rgba(255,107,107,.15);color:var(--red)}.qq .o.dis{pointer-events:none;opacity:.5}
+.qq .ex{margin-top:.3rem;font-size:.78rem;color:var(--text2);display:none;padding:.4rem .5rem;background:var(--surface3);border-radius:5px}
+.nb{display:flex;justify-content:space-between;margin-top:2rem;gap:.8rem}.nbtn{padding:.6rem 1rem;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:600;transition:all .3s}.nbtn:hover{border-color:var(--accent);background:var(--surface2)}.nbtn.pr{background:var(--accent);border-color:var(--accent);color:#fff}.nbtn.pr:hover{background:var(--accent2);color:var(--bg)}
+@media(max-width:700px){.nav{padding:0 .4rem}.nav-links button{font-size:.55rem;padding:.2rem .3rem}.hero{padding:5rem .8rem 2rem}.section{padding:1rem .8rem 4rem}.lh h3{font-size:.9rem}}
 </style>
 </head>
 <body>
 
 <nav class="nav">
-<div class="nav-logo">SESAME Enjeux</div>
+<div class="nav-logo">SESAME Enjeux V2</div>
 <div class="nav-links">
-<button onclick="showSection('home')" class="active" id="nav-home">Accueil</button>
-<button onclick="showSection('b1')" id="nav-b1">🇫🇷 France</button>
-<button onclick="showSection('b2')" id="nav-b2">🌍 Géopolitique</button>
-<button onclick="showSection('b3')" id="nav-b3">💰 Économie</button>
-<button onclick="showSection('b4')" id="nav-b4">🌱 Environnement</button>
-<button onclick="showSection('b5')" id="nav-b5">🔬 Sciences</button>
-<button onclick="showSection('b6')" id="nav-b6">🎬 Culture</button>
-<button onclick="showSection('b7')" id="nav-b7">⚽ Sport</button>
+<button onclick="go('home')" class="active" id="nav-home">Accueil</button>
+<button onclick="go('b1')" id="nav-b1">🇫🇷 Politique</button>
+<button onclick="go('b2')" id="nav-b2">⚖️ Justice</button>
+<button onclick="go('b3')" id="nav-b3">🇪🇺 Europe</button>
+<button onclick="go('b4')" id="nav-b4">🌍 Géopol</button>
+<button onclick="go('b5')" id="nav-b5">🌱 Climat</button>
+<button onclick="go('b6')" id="nav-b6">🎬 Culture</button>
+<button onclick="go('b7')" id="nav-b7">⚽ Sport</button>
+<button onclick="go('b8')" id="nav-b8">📱 Société</button>
+<button onclick="go('quiz')" id="nav-quiz">🧪 Quiz</button>
 </div>
 </nav>
-<div class="progress-bar" id="progressBar" style="width:0%"></div>
+<div class="progress-bar" id="pb" style="width:0%"></div>
 
 <!-- HOME -->
 <div class="section active" id="sec-home">
 <div class="hero"><div class="hero-content">
-<h1>Enjeux <span>Contemporains</span></h1>
+<h1>Enjeux <span>Contemporains</span> V2</h1>
 <p>40 questions · 30 minutes · 0 point négatif · 45 sec/question</p>
-<p style="color:var(--text3);font-size:.85rem">Période couverte : juin 2025 → 8 avril 2026 (10 mois)</p>
-<p style="color:var(--text3);font-size:.85rem">Domaines : politique, économie, société, environnement, sciences, culture, sport</p>
+<p style="color:var(--text3);font-size:.8rem">Basé sur un dossier de préparation vérifié — Période : juin 2025 → 8 avril 2026</p>
 </div></div>
-
-<div style="max-width:900px;margin:0 auto 3rem;padding:0 2rem">
-<div class="tip">
-<div class="tip-title">⚡ STRATÉGIE POUR CETTE ÉPREUVE</div>
-<p>Ce n'est PAS de la culture générale historique. C'est de l'<strong>actualité pure</strong> des 10 derniers mois. Les questions sont très factuelles : "Qui a gagné ?", "Quel pays ?", "Quelle date ?", "Quel nom ?"</p>
-<p>Tu as 45 secondes par question. Soit tu sais, soit tu ne sais pas. <strong>Pas de points négatifs</strong> → réponds à TOUT, même au hasard (25% de chance). Ne perds pas de temps à hésiter.</p>
-</div>
+<div style="max-width:900px;margin:0 auto 2rem;padding:0 2rem">
+<div class="tip"><div class="tip-t">⚡ STRATÉGIE RAPPEL</div><p>Ce n'est PAS de la culture générale historique. C'est de l'actualité pure des 10 derniers mois. 45 sec/question. Tu sais ou tu sais pas. <strong>Pas de points négatifs → réponds à TOUT.</strong></p></div>
 </div>
 </div>
 
-<!-- ═══════════ BLOC 1 — FRANCE ═══════════ -->
+<!-- ═══ BLOC 1 — POLITIQUE FRANÇAISE ═══ -->
 <div class="section" id="sec-b1">
-<div class="section-header b1"><div class="bloc-num">Bloc 1 — Politique française</div><h2>🇫🇷 France — Événements majeurs</h2><p>Crise politique, Premier ministre, retraites, élections municipales...</p></div>
+<div class="sh c1"><div class="bn">Bloc 1</div><h2>🇫🇷 Politique française</h2><p>Chronologie politique juin 2025 → mars 2026. Gouvernements, budget, retraites, municipales.</p></div>
 
-<div class="lesson" id="l1-1"><div class="lesson-head" onclick="toggleLesson('l1-1')"><h3>Crise politique & Gouvernements</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="fact fact-hot"><span class="date">31 mars 2025</span><strong>Condamnation de Marine Le Pen</strong> — 5 ans d'inéligibilité à effet immédiat + 4 ans de prison (dont 2 ferme) dans l'affaire des emplois fictifs des assistants parlementaires du FN/RN. Appel prévu en janvier-février 2026.</div>
-<div class="fact"><span class="date">Février 2025</span><strong>Budget adopté au 49.3</strong> — Le gouvernement Bayrou fait passer le budget de l'État sans vote parlementaire. Motions de censure déposées par LFI.</div>
-<div class="fact fact-hot"><span class="date">8 septembre 2025</span><strong>Chute du gouvernement Bayrou</strong> — L'Assemblée rejette la confiance : 364 voix contre, 194 pour. Premier gouvernement de la Ve République renversé par un vote de confiance défavorable.</div>
-<div class="fact"><span class="date">9-10 septembre 2025</span><strong>Sébastien Lecornu nommé Premier ministre</strong> — 5e Premier ministre en 21 mois. Ancien ministre des Armées.</div>
-<div class="fact"><span class="date">Septembre 2025</span><strong>Mouvement "Bloquons tout"</strong> — Grèves massives et blocages contre le plan budgétaire de Bayrou (déremboursement de médicaments, suppression de jours fériés).</div>
-<div class="fact"><span class="date">10 octobre 2025</span><strong>Lecornu renommé après démission</strong> — Démissionne puis est renommé 4 jours plus tard. Gouvernement Lecornu II formé le 12 octobre.</div>
-<div class="fact fact-hot"><span class="date">14 octobre 2025</span><strong>Suspension de la réforme des retraites</strong> — Lecornu annonce la suspension jusqu'à l'élection présidentielle 2027. Aucun relèvement de l'âge, durée d'assurance maintenue à 170 trimestres. Coût : 400M€ en 2026.</div>
-<div class="fact"><span class="date">16 décembre 2025</span><strong>Vote du budget Sécurité sociale</strong> — Adopté grâce à l'abstention des socialistes (63 députés PS sur 69 votent pour).</div>
-<div class="fact"><span class="date">20 janvier 2026</span><strong>49.3 sur le budget 2026</strong> — Lecornu utilise le 49.3 malgré sa promesse. Motions de censure rejetées (celle de gauche à 29 voix près grâce aux socialistes).</div>
-<div class="fact fact-hot"><span class="date">15 mars 2026</span><strong>Élections municipales (1er tour)</strong> — Abstention record de 43%, la plus élevée pour des municipales hors Covid. "Fatigue démocratique" diagnostiquée.</div>
-<div class="fact"><span class="date">2025</span><strong>Démographie historique</strong> — Pour la première fois depuis 1945, la France connaît plus de décès que de naissances (données INSEE).</div>
+<div class="ls" id="l1a"><div class="lh" onclick="tg('l1a')"><h3>Chronologie politique complète</h3><span class="ar">▼</span></div><div class="lb">
+<div class="f"><span class="d">24 juin 2025</span>Motion de censure socialiste contre Bayrou après l'échec des négociations retraites. Elle échoue mais confirme la fragilité du gouvernement.</div>
+<div class="f"><span class="d">1er juillet 2025</span>Bayrou survit à une motion de censure : seulement <strong>189 voix</strong>, loin des 289 nécessaires.</div>
+<div class="f hot"><span class="d">25-29 août 2025</span><strong>Bayrou annonce un vote de confiance</strong> lié à son plan budgétaire 2026 : 44 milliards d'efforts, suppression de 2 jours fériés, gel de dépenses. Syndicats préparent une grève pour le 18 septembre.</div>
+<div class="f hot"><span class="d">8-13 septembre 2025</span><strong>Bayrou perd le vote de confiance</strong>, remet sa démission. Macron nomme <strong>Sébastien Lecornu</strong> à Matignon. <strong>Fitch abaisse la note</strong> de la France. Lecornu renonce à la suppression des jours fériés.</div>
+<div class="f"><span class="d">18 septembre 2025</span>Journée nationale de grèves et manifestations contre les coupes budgétaires.</div>
+<div class="f"><span class="d">24 sept - 2 oct 2025</span>Nouvelle mobilisation syndicale. Lecornu fixe un objectif de déficit de <strong>4,7% du PIB</strong> pour 2026.</div>
+<div class="f hot"><span class="d">6-17 octobre 2025</span>Paralysie politique. Lecornu remet puis reforme son gouvernement, survit à 2 motions de censure. <strong>S&P abaisse la note</strong> de la France.</div>
+<div class="f"><span class="d">24 octobre 2025</span><strong>Moody's</strong> maintient la note mais abaisse la perspective à <strong>négative</strong>.</div>
+<div class="f"><span class="d">Novembre 2025</span>Discussion budgétaire bloquée à l'Assemblée. Impossibilité de dégager une majorité.</div>
+<div class="f"><span class="d">5-23 décembre 2025</span>Adoption de justesse du <strong>budget Sécurité sociale</strong>. Sénat vote le budget 2026. Échec de la commission mixte paritaire → loi spéciale de fin d'année.</div>
+<div class="f"><span class="d">14-23 janvier 2026</span>Villeroy de Galhau alerte sur une "zone de danger" si déficit dépasse 5%. <strong>Lecornu utilise le 49.3</strong> pour la 1ère partie du budget. Survit aux motions de censure.</div>
+<div class="f"><span class="d">30 jan - 8 fév 2026</span>INSEE : croissance de <strong>0,9%</strong> en 2025. Le <strong>2 février</strong>, la France adopte enfin son budget 2026.</div>
+<div class="f"><span class="d">15 et 22 mars 2026</span><strong>Élections municipales</strong>. Forte abstention, fragmentation politique. Test avant la présidentielle 2027.</div>
+
+<div class="trap"><div class="trap-t">⚠️ PIÈGE CLASSIQUE</div><p>Ne pas confondre : Bayrou tombe sur un <strong>vote de confiance</strong> (pas une motion de censure). C'est le premier gouvernement de la Ve République renversé de cette manière.</p></div>
+
+<div class="tip"><div class="tip-t">💡 RETIENS LES 3 AGENCES</div><p><strong>Fitch</strong> (sept 2025) → abaisse. <strong>S&P</strong> (oct 2025) → abaisse. <strong>Moody's</strong> (oct 2025) → perspective négative. Les 3 agences dégradent la France = signal très fort.</p></div>
 </div></div>
 
-<div class="lesson" id="l1-2"><div class="lesson-head" onclick="toggleLesson('l1-2')"><h3>Faits divers & Société</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="fact fact-hot"><span class="date">19 octobre 2025</span><strong>Casse spectaculaire au Louvre</strong> — 8 joyaux du XIXe siècle volés en plein jour en 8 minutes via un monte-charge. Butin estimé à 88 millions d'euros. 4 suspects arrêtés, bijoux toujours introuvables. La Cour des comptes critique la sécurité du musée.</div>
-<div class="fact"><span class="date">2025</span><strong>Colère agricole</strong> — Manifestations contre l'accord UE-Mercosur (concurrence déloyale), l'épidémie de dermatose nodulaire (abattage massif de bovins) et les normes européennes.</div>
-<div class="fact"><span class="date">2025</span><strong>Débat sur la "taxe Zucman"</strong> — L'économiste Gabriel Zucman propose une taxe sur le patrimoine des ultra-riches. Grand débat national et international.</div>
-<div class="fact"><span class="date">23 juin 2025</span><strong>Nouveau parti : La France humaniste</strong> — Création d'une nouvelle formation politique.</div>
+<div class="ls" id="l1b"><div class="lh" onclick="tg('l1b')"><h3>Retraites & Suspension</h3><span class="ar">▼</span></div><div class="lb">
+<div class="f hot"><span class="d">14 octobre 2025</span>Lecornu annonce la <strong>suspension de la réforme des retraites</strong> jusqu'à la présidentielle 2027. Aucun relèvement de l'âge. Durée d'assurance maintenue à <strong>170 trimestres</strong>. Coût : 400M€ en 2026, 1,8 milliard en 2027.</div>
+<p>Cette suspension est obtenue en échange de l'abstention des <strong>socialistes</strong> (63 députés PS sur 69 votent pour le budget sécu le 16 décembre).</p>
 </div></div>
 
-<div class="nav-buttons"><button class="nav-btn" onclick="showSection('home')">← Accueil</button><button class="nav-btn primary" onclick="showSection('b2')">Géopolitique →</button></div>
+<div class="nb"><button class="nbtn" onclick="go('home')">← Accueil</button><button class="nbtn pr" onclick="go('b2')">Justice →</button></div>
 </div>
 
-<!-- ═══════════ BLOC 2 — GÉOPOLITIQUE ═══════════ -->
+<!-- ═══ BLOC 2 — JUSTICE ═══ -->
 <div class="section" id="sec-b2">
-<div class="section-header b2"><div class="bloc-num">Bloc 2 — Relations internationales</div><h2>🌍 Géopolitique mondiale</h2><p>Trump, Ukraine, Moyen-Orient, Chine, Syrie...</p></div>
+<div class="sh c2"><div class="bn">Bloc 2</div><h2>⚖️ Affaires judiciaires</h2><p>Le Pen, Sarkozy, Deranque — la justice au cœur de la politique.</p></div>
 
-<div class="lesson" id="l2-1"><div class="lesson-head" onclick="toggleLesson('l2-1')"><h3>États-Unis & Trump</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="fact fact-hot"><span class="date">20 janvier 2025</span><strong>Investiture de Donald Trump</strong> — 47e président des États-Unis. Retour au pouvoir après sa défaite en 2020.</div>
-<div class="fact fact-hot"><span class="date">2 avril 2025</span><strong>"Liberation Day" — Tarifs douaniers massifs</strong> — Trump impose 10% de droits de douane sur presque tous les pays du monde + tarifs spécifiques par pays. Choc commercial mondial.</div>
-<div class="fact"><span class="date">2025</span><strong>Politique migratoire durcie</strong> — Déportations massives, fermeture quasi-totale des voies d'immigration légale. Détention de migrants avec permis de travail légaux.</div>
-<div class="fact"><span class="date">2025</span><strong>Coupes dans l'aide étrangère</strong> — Aide étrangère américaine réduite de 63 milliards $ à potentiellement 8 milliards $. Plus de 350 000 décès attribués aux coupes d'aide depuis janvier.</div>
-<div class="fact"><span class="date">Début 2026</span><strong>Crise du Groenland</strong> — Tensions diplomatiques autour du Groenland.</div>
-<div class="fact"><span class="date">Début 2026</span><strong>Enlèvement de Nicolás Maduro</strong> — Les États-Unis procèdent à l'enlèvement du président vénézuélien.</div>
+<div class="ls" id="l2a"><div class="lh" onclick="tg('l2a')"><h3>Affaire Marine Le Pen</h3><span class="ar">▼</span></div><div class="lb">
+<p><strong>Dossier :</strong> emplois fictifs d'assistants parlementaires européens du RN (années 2000 → mi-2010).</p>
+<div class="f hot"><span class="d">Mars 2025</span>Condamnation en première instance : <strong>5 ans d'inéligibilité</strong> (immédiate) + 4 ans de prison dont 2 ferme.</div>
+<div class="f"><span class="d">13 janvier 2026</span>Ouverture du <strong>procès en appel</strong> à Paris.</div>
+<div class="f"><span class="d">3 février 2026</span>Le parquet requiert de nouveau prison + 5 ans d'inéligibilité, mais <strong>sans exécution immédiate</strong> → rouvre partiellement le jeu politique.</div>
+<div class="f hot"><span class="d">11 février 2026</span>Décision annoncée pour le <strong>7 juillet 2026</strong> → date politique majeure avant 2027.</div>
+<div class="f"><span class="d">Mars 2026</span>Municipales = test pour le RN. Progression confirmée mais sans conquête des grandes villes.</div>
+<div class="tip"><div class="tip-t">💡 ENJEU</div><p>La question centrale : Le Pen pourra-t-elle être candidate en 2027 ? Tout dépend du verdict du 7 juillet 2026.</p></div>
 </div></div>
 
-<div class="lesson" id="l2-2"><div class="lesson-head" onclick="toggleLesson('l2-2')"><h3>Ukraine, Russie & Moyen-Orient</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="fact"><span class="date">2025</span><strong>Guerre Ukraine-Russie continue</strong> — Plan de paix américano-russe en 28 points fuite en novembre, jugé favorable à Moscou. L'Europe renforce son soutien militaire à l'Ukraine. Course technologique aux drones.</div>
-<div class="fact fact-hot"><span class="date">Juin 2025</span><strong>Opération Midnight Hammer</strong> — Les États-Unis (B2, Tomahawk) et Israël frappent les installations nucléaires iraniennes. Trump affirme avoir "totalement anéanti" le programme nucléaire iranien. Cessez-le-feu le 24 juin.</div>
-<div class="fact"><span class="date">Début 2026</span><strong>Guerre d'Iran 2026</strong> — Escalade militaire au début de l'année.</div>
-<div class="fact fact-hot"><span class="date">Décembre 2024 → 2025</span><strong>Chute de Bachar al-Assad en Syrie</strong> — Ahmed al-Charaa (ex-al-Joulani) prend le pouvoir. Demande la levée de toutes les sanctions internationales. L'UE (mai 2025) puis les USA lèvent leurs sanctions. Négociations avec les Kurdes. Milliers de combattants de Daech toujours prisonniers au nord-est.</div>
-<div class="fact"><span class="date">Juillet 2025</span><strong>Conflit Cambodge-Thaïlande</strong> — Pires affrontements frontaliers en décennies autour du temple de Prasat Ta Muen Thom.</div>
+<div class="ls" id="l2b"><div class="lh" onclick="tg('l2b')"><h3>Procès Sarkozy — Financement libyen</h3><span class="ar">▼</span></div><div class="lb">
+<p><strong>Dossier :</strong> financement présumé de la campagne 2007 par le régime de Kadhafi.</p>
+<div class="f"><span class="d">2005</span>Soupçon d'un accord Sarkozy-Kadhafi quand Sarkozy est ministre de l'Intérieur.</div>
+<div class="f"><span class="d">2007</span>Élection de Sarkozy. Visite officielle de Kadhafi à Paris en décembre.</div>
+<div class="f"><span class="d">2011</span>Intervention française contre Kadhafi. Accusations publiques de financement.</div>
+<div class="f"><span class="d">2012</span>Publication d'un document évoquant 50 millions d'euros.</div>
+<div class="f hot"><span class="d">2025</span>Condamnation en 1ère instance à <strong>5 ans de prison</strong> pour association de malfaiteurs.</div>
+<div class="f hot"><span class="d">Octobre 2025</span><strong>Incarcération à la Santé</strong>, puis remise en liberté sous contrôle judiciaire.</div>
+<div class="f"><span class="d">16 mars 2026</span>Ouverture du <strong>procès en appel</strong> à Paris.</div>
+<div class="tip"><div class="tip-t">💡 À RETENIR</div><p>Premier ex-président français incarcéré. Le dossier illustre la tension entre indépendance de la justice et judiciarisation de la vie politique.</p></div>
 </div></div>
 
-<div class="lesson" id="l2-3"><div class="lesson-head" onclick="toggleLesson('l2-3')"><h3>Europe & Monde</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="fact"><span class="date">23 février 2025</span><strong>Élections allemandes</strong> — CDU/CSU gagne, l'AfD (extrême droite, pro-Russie, anti-UE) arrive 2e. L'Allemagne en récession pour la 3e année.</div>
-<div class="fact"><span class="date">Janvier 2025</span><strong>Pologne prend la présidence du Conseil de l'UE</strong> — Slogan : "Security, Europe!" Focus sur la défense européenne.</div>
-<div class="fact"><span class="date">2025</span><strong>G20 à Johannesburg</strong> — Première fois qu'un pays africain accueille le G20. Thème : "Solidarité, Égalité, Durabilité".</div>
-<div class="fact"><span class="date">Février 2025</span><strong>Sommet IA de Paris</strong> — L'UE annonce le programme "InvestAI" de 200 milliards d'euros pour l'IA.</div>
-<div class="fact"><span class="date">2026</span><strong>Présidence française du G7</strong> — La France préside le G7 en 2026.</div>
-<div class="fact"><span class="date">Janvier 2025</span><strong>Biélorussie : Loukachenko réélu</strong> — 7e mandat dans un scrutin contrôlé. Alliance renforcée avec la Russie.</div>
+<div class="ls" id="l2c"><div class="lh" onclick="tg('l2c')"><h3>Affaire Quentin Deranque</h3><span class="ar">▼</span></div><div class="lb">
+<p>Agression mortelle d'un jeune homme de 23 ans à Lyon, politisée immédiatement.</p>
+<div class="f"><span class="d">Juin 2025</span>Dissolution de la <strong>Jeune Garde</strong> par le gouvernement.</div>
+<div class="f hot"><span class="d">12 février 2026</span>Agression à Lyon.</div>
+<div class="f hot"><span class="d">14 février 2026</span>Décès de Quentin Deranque.</div>
+<div class="f"><span class="d">20 février 2026</span>7 personnes mises en examen dont 6 pour homicide volontaire.</div>
+<div class="f"><span class="d">6 mars 2026</span>9 personnes écrouées au total.</div>
+<p><strong>Enjeu :</strong> violence politique, polarisation idéologique, débat sur l'ultragauche/ultradroite.</p>
 </div></div>
 
-<div class="nav-buttons"><button class="nav-btn" onclick="showSection('b1')">← France</button><button class="nav-btn primary" onclick="showSection('b3')">Économie →</button></div>
+<div class="nb"><button class="nbtn" onclick="go('b1')">← Politique</button><button class="nbtn pr" onclick="go('b3')">Europe →</button></div>
 </div>
 
-<!-- ═══════════ BLOC 3 — ÉCONOMIE ═══════════ -->
+<!-- ═══ BLOC 3 — EUROPE & CLIMAT ═══ -->
 <div class="section" id="sec-b3">
-<div class="section-header b3"><div class="bloc-num">Bloc 3 — Économie & Commerce</div><h2>💰 Économie mondiale</h2><p>Tarifs douaniers, guerre commerciale, dette, Mercosur...</p></div>
+<div class="sh c3"><div class="bn">Bloc 3</div><h2>🇪🇺 Europe, Commerce & Industrie</h2><p>CBAM, Clean Industrial Deal, matières premières critiques, relations France-Algérie.</p></div>
 
-<div class="lesson" id="l3-1"><div class="lesson-head" onclick="toggleLesson('l3-1')"><h3>Commerce & Tarifs</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="fact fact-hot"><span class="date">2 avril 2025</span><strong>"Liberation Day"</strong> — Trump impose des tarifs douaniers massifs. 10% minimum sur tous les pays, tarifs spécifiques plus élevés pour certains (Chine, UE). Chaos sur les marchés mondiaux. Incertitude sur les chaînes d'approvisionnement.</div>
-<div class="fact"><span class="date">2025</span><strong>Guerre commerciale USA-Chine</strong> — Protectionnisme technologique américain contre la Chine. Contrôles à l'exportation de minerais critiques par la Chine en représailles. Les terres rares deviennent un enjeu géopolitique majeur.</div>
-<div class="fact fact-hot"><span class="date">Fin 2025</span><strong>Accord UE-Mercosur</strong> — Traité de libre-échange entre l'UE et l'Amérique du Sud. La France s'oppose farouchement. Colère des agriculteurs européens (concurrence déloyale sur viande, volaille, sucre, œufs).</div>
-<div class="fact"><span class="date">2025</span><strong>OMC fragilisée</strong> — Les USA favorisent les accords bilatéraux au détriment du multilatéralisme. Risque de perte de pertinence de l'OMC.</div>
+<div class="ls" id="l3a"><div class="lh" onclick="tg('l3a')"><h3>UE : climat, commerce, industrie</h3><span class="ar">▼</span></div><div class="lb">
+<h4>Sigles à connaître</h4>
+<div class="f"><span class="d">CBAM / MACF</span><strong>Mécanisme d'ajustement carbone aux frontières</strong> — fait payer un coût carbone aux importations de produits très émetteurs. Régime définitif au <strong>1er janvier 2026</strong>.</div>
+<div class="f"><span class="d">Clean Industrial Deal</span>Faire de la <strong>décarbonation</strong> un moteur de compétitivité industrielle européenne.</div>
+<div class="f"><span class="d">Critical Raw Materials Act</span>Sécuriser l'accès aux métaux/minerais pour batteries, technologies vertes, numérique et défense.</div>
+<div class="f"><span class="d">RESourceEU</span>Lancé en décembre 2025 pour accélérer la stratégie matières premières critiques.</div>
+
+<h4>Chronologie</h4>
+<div class="f"><span class="d">Juin 2025</span>Assouplissement des règles d'aides d'État pour soutenir les projets verts.</div>
+<div class="f"><span class="d">1er janvier 2026</span>CBAM entre en régime définitif → <strong>protectionnisme vert</strong> européen.</div>
+<div class="f"><span class="d">Février 2026</span>Les auditeurs européens soulignent que la diversification des matières premières reste <strong>insuffisante</strong>. Le "Made in Europe" est retardé par des désaccords internes.</div>
+
+<div class="tip"><div class="tip-t">💡 FORMULE CLÉ</div><p>L'UE cherche à concilier transition écologique, compétitivité industrielle et autonomie stratégique, mais reste freinée par ses dépendances extérieures et ses divisions internes.</p></div>
 </div></div>
 
-<div class="lesson" id="l3-2"><div class="lesson-head" onclick="toggleLesson('l3-2')"><h3>Croissance & Tendances</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="fact"><span class="date">2025</span><strong>Croissance mondiale : 3,2%</strong> (FMI) — Sous la moyenne pré-pandémie de 3,2%. Prévision 2026 : 3,1% (ralentissement).</div>
-<div class="fact"><span class="date">2025</span><strong>France : 7e puissance mondiale</strong> — PIB nominal de 2 919 milliards €. Déficit préoccupant, instabilité politique freine l'action publique.</div>
-<div class="fact"><span class="date">2025</span><strong>Chine : ralentissement</strong> — Croissance de 4,8% en 2025, prévue à 4,2% en 2026. Demande intérieure faible.</div>
-<div class="fact"><span class="date">2025</span><strong>Chine = superpuissance électrique</strong> — Plus de 50% des voitures vendues en Chine sont électriques. Dépassement de l'UE et des USA en part d'électricité dans la consommation d'énergie.</div>
-<div class="fact"><span class="date">2025</span><strong>Taxe Zucman</strong> — Le Français Gabriel Zucman propose un impôt mondial sur les ultra-riches. Débat international majeur.</div>
+<div class="ls" id="l3b"><div class="lh" onclick="tg('l3b')"><h3>Relations France-Algérie</h3><span class="ar">▼</span></div><div class="lb">
+<p>Croise : diplomatie, mémoire coloniale, immigration, économie, sécurité.</p>
+<div class="f"><span class="d">Printemps 2025</span>Expulsions croisées de personnels diplomatiques et consulaires.</div>
+<div class="f"><span class="d">Août 2025</span>Macron demande un durcissement des visas pour les diplomates algériens.</div>
+<div class="f"><span class="d">Automne 2025</span>Signaux d'apaisement. Libération de <strong>Boualem Sansal</strong>. Mais condamnation du journaliste <strong>Christophe Gleizes</strong> en Algérie.</div>
+<div class="f"><span class="d">Février 2026</span><strong>Laurent Nuñez</strong> se rend à Alger. Relance de la coopération sécuritaire.</div>
+<p><strong>3 fils conducteurs :</strong> mémoire, migration-sécurité, Sahara occidental.</p>
 </div></div>
 
-<div class="nav-buttons"><button class="nav-btn" onclick="showSection('b2')">← Géopolitique</button><button class="nav-btn primary" onclick="showSection('b4')">Environnement →</button></div>
+<div class="nb"><button class="nbtn" onclick="go('b2')">← Justice</button><button class="nbtn pr" onclick="go('b4')">Géopolitique →</button></div>
 </div>
 
-<!-- ═══════════ BLOC 4 — ENVIRONNEMENT ═══════════ -->
+<!-- ═══ BLOC 4 — GÉOPOLITIQUE ═══ -->
 <div class="section" id="sec-b4">
-<div class="section-header b4"><div class="bloc-num">Bloc 4 — Environnement & Climat</div><h2>🌱 Environnement</h2><p>COP, climat, biodiversité, océans...</p></div>
+<div class="sh c4"><div class="bn">Bloc 4</div><h2>🌍 Géopolitique mondiale</h2><p>Moyen-Orient, Ukraine, Chine-Taïwan, Afrique, Groenland, géoéconomie.</p></div>
 
-<div class="lesson" id="l4-1"><div class="lesson-head" onclick="toggleLesson('l4-1')"><h3>Climat & COP</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="fact fact-hot"><span class="date">2025</span><strong>COP30 au Brésil (Belém)</strong> — Engagements de 1 300 milliards $ pour les pays en développement. Mais faible engagement des grands pays émetteurs. Financement climatique reste un défi majeur.</div>
-<div class="fact"><span class="date">Janvier 2026</span><strong>Traité sur la Haute Mer entre en vigueur</strong> — Protection de la biodiversité marine au-delà des juridictions nationales. Nouvelle COP dédiée aux océans prévue fin 2026.</div>
-<div class="fact"><span class="date">2025</span><strong>USA retirent le soutien climat</strong> — L'administration Trump coupe massivement les financements climatiques. Les accords de Paris fragilisés par l'absence américaine.</div>
-<div class="fact"><span class="date">2025</span><strong>Transition énergétique chinoise</strong> — La Chine domine le marché des véhicules électriques et des panneaux solaires. Expansion massive du réseau électrique.</div>
+<div class="ls" id="l4a"><div class="lh" onclick="tg('l4a')"><h3>Moyen-Orient</h3><span class="ar">▼</span></div><div class="lb">
+<div class="f"><span class="d">10 octobre 2025</span>Accord de cessez-le-feu à Gaza : échanges d'otages et prisonniers.</div>
+<div class="f"><span class="d">28 février 2026</span>Fermeture des points de passage vers Gaza dont Rafah.</div>
+<div class="f hot"><span class="d">18-19 mars 2026</span>Frappes israéliennes sur le champ gazier iranien <strong>South Pars</strong> et le hub d'<strong>Asaluyeh</strong>. Représailles iraniennes contre les infrastructures énergétiques du Golfe.</div>
+<div class="f"><span class="d">19 mars 2026</span>Réouverture partielle de Rafah pour certains blessés.</div>
+<div class="f"><span class="d">20 mars 2026</span><strong>UNRWA</strong> alerte sur l'effondrement opérationnel de l'aide à Gaza.</div>
+<div class="f"><span class="d">18 mars 2026</span>Nouveau pouvoir syrien annonce un plan d'élimination des armes chimiques avec l'<strong>OIAC</strong>.</div>
+<div class="f"><span class="d">Mars 2026</span>Liban : reprise des affrontements <strong>Israël-Hezbollah</strong>.</div>
 </div></div>
 
-<div class="nav-buttons"><button class="nav-btn" onclick="showSection('b3')">← Économie</button><button class="nav-btn primary" onclick="showSection('b5')">Sciences →</button></div>
+<div class="ls" id="l4b"><div class="lh" onclick="tg('l4b')"><h3>Ukraine & Autonomie stratégique européenne</h3><span class="ar">▼</span></div><div class="lb">
+<div class="f"><span class="d">25 décembre 2025</span>Moscou évoque des progrès lents dans les discussions avec les USA.</div>
+<div class="f"><span class="d">25 février 2026</span>Macron actualise sa <strong>vision nucléaire</strong> française.</div>
+<div class="f hot"><span class="d">18 mars 2026</span>Annonce du futur porte-avions nucléaire <strong>"France Libre"</strong>.</div>
+<div class="f"><span class="d">19 mars 2026</span>Kremlin parle de <strong>"pause situationnelle"</strong> dans les négociations.</div>
+<div class="f"><span class="d">Mi-mars 2026</span>Vagues massives de frappes russes (centaines de drones, dizaines de missiles).</div>
+</div></div>
+
+<div class="ls" id="l4c"><div class="lh" onclick="tg('l4c')"><h3>Chine, Taïwan & Mer de Chine</h3><span class="ar">▼</span></div><div class="lb">
+<div class="f hot"><span class="d">30 décembre 2025</span>Chine mène des exercices à <strong>tirs réels</strong> autour de Taïwan = simulation de blocus.</div>
+<div class="f"><span class="d">1er janvier 2026</span>Taïwan promet de défendre sa souveraineté.</div>
+<div class="f"><span class="d">29 janvier 2026</span>Taïwan simule la défense contre un assaut amphibie chinois.</div>
+<div class="f"><span class="d">Mars 2026</span>Lai Ching-te défend ~<strong>40 milliards $</strong> pour la défense. Menace qualifiée de "pressante".</div>
+<div class="f"><span class="d">16-20 mars 2026</span>Philippines rejettent les prétentions chinoises. Accusation de verrouillage radar contre un navire philippin.</div>
+<div class="tip"><div class="tip-t">💡 REPÈRE HISTORIQUE</div><p><strong>Kuomintang</strong> (KMT) = parti nationaliste chinois. Replié à Taïwan en 1949 après la victoire de Mao. Taïwan = démocratie depuis 1987 (fin de la loi martiale). Le conflit Chine-Taïwan = zone grise (intimidation, exercices, coercition) pas guerre ouverte.</p></div>
+</div></div>
+
+<div class="ls" id="l4d"><div class="lh" onclick="tg('l4d')"><h3>Afrique : Grands Lacs & Soudan</h3><span class="ar">▼</span></div><div class="lb">
+<h4>RDC - Rwanda - M23</h4>
+<div class="f"><span class="d">2 mars 2026</span>Sanctions américaines contre l'armée rwandaise (soutien au M23).</div>
+<div class="f"><span class="d">17-18 mars 2026</span>Réunion de Washington : RDC et Rwanda s'engagent sur la désescalade.</div>
+<h4>Soudan</h4>
+<div class="f hot"><span class="d">3 novembre 2025</span>Confirmation de <strong>famine</strong> à al-Fashir et Kadugli.</div>
+<div class="f"><span class="d">Mars 2026</span>Save the Children alerte : rupture de fournitures médicales pour 90 cliniques.</div>
+<p><strong>Repère :</strong> guerre depuis avril 2023 entre Forces armées soudanaises (Burhan) et RSF (Hemedti). Les <strong>Masalit</strong> = peuple non arabe du Darfour, symbole des violences ethniques.</p>
+</div></div>
+
+<div class="ls" id="l4e"><div class="lh" onclick="tg('l4e')"><h3>Groenland, Commerce & Énergie</h3><span class="ar">▼</span></div><div class="lb">
+<h4>Groenland</h4>
+<div class="f"><span class="d">21 janvier 2026</span>Trump renonce publiquement à l'<strong>option militaire</strong>.</div>
+<div class="f"><span class="d">28 janvier 2026</span>Ouverture de discussions diplomatiques USA-Danemark-Groenland.</div>
+<h4>Géoéconomie américaine</h4>
+<div class="f"><span class="d">11-13 mars 2026</span>Washington lance de nouvelles enquêtes commerciales contre Chine, UE, Inde, Japon, Corée du Sud.</div>
+<h4>Énergie comme arme</h4>
+<div class="f"><span class="d">18-19 mars 2026</span>Attaques croisées sur les infrastructures énergétiques du Golfe → effets mondiaux sur les marchés.</div>
+</div></div>
+
+<div class="nb"><button class="nbtn" onclick="go('b3')">← Europe</button><button class="nbtn pr" onclick="go('b5')">Climat →</button></div>
 </div>
 
-<!-- ═══════════ BLOC 5 — SCIENCES ═══════════ -->
+<!-- ═══ BLOC 5 — CLIMAT ═══ -->
 <div class="section" id="sec-b5">
-<div class="section-header b5"><div class="bloc-num">Bloc 5 — Sciences, Santé & Tech</div><h2>🔬 Sciences & Technologies</h2><p>Prix Nobel, IA, santé, découvertes...</p></div>
+<div class="sh c5"><div class="bn">Bloc 5</div><h2>🌱 COP30 & Climat</h2><p>COP30 à Belém, historique des COP, financement climatique.</p></div>
 
-<div class="lesson" id="l5-1"><div class="lesson-head" onclick="toggleLesson('l5-1')"><h3>Prix Nobel 2025 — À connaître par cœur</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="tip"><div class="tip-title">🎯 TRÈS PROBABLE AU CONCOURS</div><p>Les Nobel tombent régulièrement en enjeux contemporains. Retiens au minimum : Paix, Littérature, et Économie.</p></div>
+<div class="ls" id="l5a"><div class="lh" onclick="tg('l5a')"><h3>COP30 — Belém, Brésil</h3><span class="ar">▼</span></div><div class="lb">
+<div class="f"><span class="d">10 novembre 2025</span>Ouverture de la COP30 à <strong>Belém</strong>, en Amazonie. "COP de l'Amazonie".</div>
+<div class="f"><span class="d">Mi-novembre 2025</span>Négociations sur : financement climatique, adaptation, ambitions nationales, énergies fossiles.</div>
+<div class="f"><span class="d">21 novembre 2025</span>Projet d'accord jugé trop faible, surtout par l'UE (transition hors fossiles insuffisante).</div>
+<div class="f hot"><span class="d">22 novembre 2025</span>Adoption du <strong>"Belém Package"</strong> (ou "Mutirão decision"). Appel à tripler le financement de l'adaptation. Mais <strong>pas d'avancée décisive sur la sortie des fossiles</strong>.</div>
 
-<div class="fact fact-hot"><span class="date">Prix Nobel de la Paix</span><strong>María Corina Machado</strong> (Venezuela) — Pour sa lutte pour la démocratie au Venezuela. Opposante au régime de Maduro. Disqualifiée de la présidentielle par le gouvernement. A reçu aussi le prix Sakharov 2024.</div>
-<div class="fact fact-hot"><span class="date">Prix Nobel de Littérature</span><strong>László Krasznahorkai</strong> (Hongrie) — "Pour son œuvre visionnaire qui, au milieu de la terreur apocalyptique, réaffirme le pouvoir de l'art." Tradition littéraire d'Europe centrale (Kafka, Bernhard).</div>
-<div class="fact"><span class="date">Prix Nobel de Physique</span><strong>John Clarke, Michel Devoret, John Martinis</strong> — Découverte de l'effet tunnel quantique macroscopique. Base de l'informatique quantique. Michel Devoret est français.</div>
-<div class="fact"><span class="date">Prix Nobel de Chimie</span><strong>Susumu Kitagawa (Japon), Richard Robson (Australie), Omar Yaghi (USA)</strong> — Développement des cadres métal-organiques (MOFs). Applications : capture du CO₂, récolte d'eau dans le désert, stockage de gaz toxiques.</div>
-<div class="fact"><span class="date">Prix Nobel de Médecine</span><strong>Mary Brunkow, Fred Ramsdell (USA), Shimon Sakaguchi (Japon)</strong> — Découvertes sur la tolérance immunitaire périphérique (cellules T régulatrices). Applications contre les maladies auto-immunes.</div>
-<div class="fact"><span class="date">Prix Nobel d'Économie</span><strong>Joel Mokyr, Philippe Aghion (français), Peter Howitt</strong> — Recherches sur la croissance économique par l'innovation et la "destruction créatrice". Philippe Aghion est professeur au Collège de France.</div>
+<h4>Historique des COP à connaître</h4>
+<div class="f"><span class="d">COP3 — Kyoto (1997)</span>Premier accord juridiquement contraignant pour les pays développés.</div>
+<div class="f"><span class="d">COP15 — Copenhague (2009)</span>Symbole des limites du multilatéralisme climatique.</div>
+<div class="f"><span class="d">COP21 — Paris (2015)</span>Accord de Paris. Objectif : limiter le réchauffement <strong>bien en dessous de 2°C</strong>, efforts vers 1,5°C.</div>
+<div class="f"><span class="d">COP27 — Charm el-Cheikh (2022)</span>Création du fonds <strong>"pertes et préjudices"</strong> pour les pays vulnérables.</div>
+<div class="f"><span class="d">COP28 — Dubaï (2023)</span>Premier texte évoquant une <strong>sortie progressive des énergies fossiles</strong>.</div>
+<div class="f"><span class="d">COP29 — Bakou (2024)</span>Débats sur le financement climatique avant Belém.</div>
+
+<div class="tip"><div class="tip-t">💡 FORMULE CLÉ</div><p>La COP30 montre que le multilatéralisme climatique fonctionne encore, mais reste très limité dès qu'il faut arbitrer entre financement, justice climatique et sortie des fossiles.</p></div>
 </div></div>
 
-<div class="lesson" id="l5-2"><div class="lesson-head" onclick="toggleLesson('l5-2')"><h3>Intelligence Artificielle</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="fact fact-hot"><span class="date">Février 2025</span><strong>Sommet IA de Paris</strong> — Sommet mondial sur l'intelligence artificielle. L'UE annonce le programme "InvestAI" de 200 milliards €. Discussions sur la régulation, la sécurité et l'éthique de l'IA. Participation de la France, l'Inde, le Japon, les Émirats arabes unis.</div>
-<div class="fact"><span class="date">2025</span><strong>IA et emploi</strong> — Débat majeur sur l'impact de l'IA sur le marché du travail. Le FMI estime que 40% des emplois mondiaux seront affectés. La France crée un plan national IA.</div>
-<div class="fact"><span class="date">2025</span><strong>2025 = Année internationale des sciences et technologies quantiques</strong> — Désignée par l'ONU, 100 ans après les fondations de la mécanique quantique.</div>
-</div></div>
-
-<div class="nav-buttons"><button class="nav-btn" onclick="showSection('b4')">← Environnement</button><button class="nav-btn primary" onclick="showSection('b6')">Culture →</button></div>
+<div class="nb"><button class="nbtn" onclick="go('b4')">← Géopolitique</button><button class="nbtn pr" onclick="go('b6')">Culture →</button></div>
 </div>
 
-<!-- ═══════════ BLOC 6 — CULTURE ═══════════ -->
+<!-- ═══ BLOC 6 — CULTURE ═══ -->
 <div class="section" id="sec-b6">
-<div class="section-header b6"><div class="bloc-num">Bloc 6 — Arts, Médias & Culture</div><h2>🎬 Culture & Arts</h2><p>Oscars, festivals, littérature, musique, médias...</p></div>
+<div class="sh c6"><div class="bn">Bloc 6</div><h2>🎬 Culture, Cinéma, Médias</h2><p>César, Cannes, Oscars, Goncourt, Nobel Littérature, vol du Louvre.</p></div>
 
-<div class="lesson" id="l6-1"><div class="lesson-head" onclick="toggleLesson('l6-1')"><h3>Oscars 2026 (98e cérémonie) — 15 mars 2026</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="tip"><div class="tip-title">🎯 CLASSIQUE AU CONCOURS</div><p>Les Oscars tombent presque chaque année. Retiens : Meilleur film, Réalisateur, Acteur, Actrice, et les faits marquants.</p></div>
+<div class="ls" id="l6a"><div class="lh" onclick="tg('l6a')"><h3>Cinéma — César, Cannes, Oscars</h3><span class="ar">▼</span></div><div class="lb">
+<h4>César 2025 (50e cérémonie, 28 février 2025)</h4>
+<div class="f hot"><span class="d">Dominateur</span><strong>Emilia Pérez</strong> de Jacques Audiard → <strong>7 César</strong></div>
+<div class="f"><span class="d">Aussi récompensé</span><strong>L'Histoire de Souleymane</strong></div>
 
-<div class="fact fact-hot"><span class="date">Meilleur film</span><strong>"One Battle After Another"</strong> — 6 Oscars au total. Film de Paul Thomas Anderson sur d'anciens révolutionnaires de gauche.</div>
-<div class="fact fact-hot"><span class="date">Meilleur réalisateur</span><strong>Paul Thomas Anderson</strong> — Pour "One Battle After Another".</div>
-<div class="fact fact-hot"><span class="date">Meilleur acteur</span><strong>Michael B. Jordan</strong> — Pour "Sinners" (film de vampires de Ryan Coogler). Premier Oscar. Il joue des jumeaux (Smoke et Stack).</div>
-<div class="fact fact-hot"><span class="date">Meilleure actrice</span><strong>Jessie Buckley</strong> — Pour "Hamnet".</div>
-<div class="fact"><span class="date">Meilleur acteur dans un second rôle</span><strong>Sean Penn</strong> — Pour "One Battle After Another".</div>
-<div class="fact"><span class="date">Meilleure actrice dans un second rôle</span><strong>Amy Madigan</strong> — Pour "Weapons".</div>
-<div class="fact"><span class="date">Meilleur scénario original</span><strong>Ryan Coogler</strong> — Pour "Sinners" (premier Oscar pour Coogler).</div>
-<div class="fact"><span class="date">Meilleur film d'animation</span><strong>"KPop Demon Hunters"</strong> — "Golden" devient la première chanson K-pop à gagner l'Oscar de la meilleure chanson.</div>
-<div class="fact"><span class="date">Meilleur documentaire</span><strong>"Mr. Nobody Against Putin"</strong></div>
-<div class="fact"><span class="date">Meilleur film international</span><strong>"Sentimental Value" (Norvège)</strong></div>
+<h4>Festival de Cannes 2025 (78e, 13-24 mai)</h4>
+<div class="f hot"><span class="d">Palme d'or</span><strong>Jafar Panahi</strong> — <em>Un simple accident</em> (It Was Just an Accident). Retour après 14 ans d'interdiction de sortie du territoire iranien.</div>
+<div class="f"><span class="d">Grand Prix</span><strong>Joachim Trier</strong> — <em>Valeur sentimentale</em></div>
+<div class="f"><span class="d">Prix du Jury</span>Partagé : Oliver Laxe (<em>Sirât</em>) et Mascha Schilinski (<em>Sound of Falling</em>)</div>
+<div class="f"><span class="d">Présidente du jury</span><strong>Juliette Binoche</strong></div>
+<div class="f"><span class="d">1er décembre 2025</span>Panahi condamné par contumace en Iran : 1 an de prison + 2 ans d'interdiction de voyager.</div>
 
-<h4>Faits marquants</h4>
-<div class="fact"><span class="date">Record historique</span><strong>"Sinners" = 16 nominations</strong> — Film le plus nommé de l'histoire des Oscars (dépassant "La La Land", "Titanic" et "All About Eve" qui avaient 14 nominations).</div>
-<div class="fact"><span class="date">Nouveauté</span><strong>Première catégorie "Best Casting"</strong> — Première nouvelle catégorie en 25 ans. Gagnée par Cassandra Kulukundis pour "One Battle After Another".</div>
-<div class="fact"><span class="date">Nouveauté</span><strong>Première femme à gagner la meilleure photo</strong> — Autumn Durald Arkapaw pour "Sinners".</div>
-<div class="fact"><span class="date">Présentateur</span><strong>Conan O'Brien</strong> — Présentateur pour la 2e année consécutive.</div>
-<div class="fact"><span class="date">Égalité rare</span><strong>Égalité en court-métrage live</strong> — "The Singers" et "Two People Exchanging Saliva". Première égalité depuis 2013.</div>
+<h4>César 2026 (51e cérémonie, 26 février 2026)</h4>
+<div class="f"><span class="d">Meilleur film</span><strong>L'Attachement</strong> de Carine Tardieu</div>
+<div class="f"><span class="d">Meilleure réalisation</span><strong>Richard Linklater</strong> — <em>Nouvelle Vague</em></div>
+<div class="f"><span class="d">Meilleure actrice</span><strong>Léa Drucker</strong> — <em>Dossier 137</em></div>
+<div class="f"><span class="d">Meilleur acteur</span><strong>Laurent Lafitte</strong> — <em>La Femme la plus riche du monde</em></div>
+
+<h4>Oscars 2026 (98e cérémonie, 15 mars 2026)</h4>
+<div class="f hot"><span class="d">Meilleur film</span><strong>One Battle After Another</strong> (Paul Thomas Anderson) — 6 Oscars</div>
+<div class="f hot"><span class="d">Meilleur acteur</span><strong>Michael B. Jordan</strong> — <em>Sinners</em></div>
+<div class="f hot"><span class="d">Meilleure actrice</span><strong>Jessie Buckley</strong> — <em>Hamnet</em></div>
+<div class="f"><span class="d">Record</span><strong>Sinners = 16 nominations</strong> → record absolu de l'histoire des Oscars</div>
+<div class="f"><span class="d">Nouvelle catégorie</span><strong>Best Casting</strong> (1ère en 25 ans) → Cassandra Kulukundis</div>
+<div class="f"><span class="d">1ère femme</span><strong>Autumn Durald Arkapaw</strong> = 1ère femme à gagner la meilleure photo</div>
+<div class="f"><span class="d">Présentateur</span><strong>Conan O'Brien</strong> (2e année consécutive)</div>
+
+<div class="trap"><div class="trap-t">⚠️ PIÈGE</div><p>Ne confonds pas : <strong>César 2025</strong> = Emilia Pérez. <strong>César 2026</strong> = L'Attachement. <strong>Oscars 2026</strong> = One Battle After Another (pas Sinners malgré ses 16 nominations).</p></div>
 </div></div>
 
-<div class="lesson" id="l6-2"><div class="lesson-head" onclick="toggleLesson('l6-2')"><h3>Autres événements culturels</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="fact"><span class="date">2025</span><strong>Nobel de Littérature : László Krasznahorkai</strong> (Hongrie) — Voir bloc Sciences.</div>
-<div class="fact"><span class="date">2025</span><strong>Décès notables</strong> — Giorgio Armani (mode), Rob Reiner et sa femme Michele (décédés le 14 décembre 2025), Frederick Wiseman (documentariste), Robert Redford (hommage de Barbra Streisand aux Oscars).</div>
+<div class="ls" id="l6b"><div class="lh" onclick="tg('l6b')"><h3>Littérature & Patrimoine</h3><span class="ar">▼</span></div><div class="lb">
+<div class="f hot"><span class="d">4 novembre 2025</span><strong>Prix Goncourt 2025</strong> → <strong>Laurent Mauvignier</strong> pour <em>La Maison vide</em></div>
+<div class="f"><span class="d">Nobel Littérature 2025</span><strong>László Krasznahorkai</strong> (Hongrie)</div>
+<div class="f hot"><span class="d">19 octobre 2025</span><strong>Vol des joyaux du Louvre</strong> — 8 joyaux de la Couronne volés en 7 minutes dans la galerie d'Apollon. Butin : <strong>88 millions €</strong>. Couronne de l'impératrice Eugénie retrouvée endommagée. Suspects arrêtés mais bijoux introuvables.</div>
+<div class="f"><span class="d">2 mars 2026</span>Cyberattaque contre <strong>Vivaticket</strong> : billetteries du Louvre, Orsay, Tour Eiffel perturbées. Incidents cyber dans le secteur culturel : de 61 (2024) à <strong>138</strong> (2025).</div>
 </div></div>
 
-<div class="nav-buttons"><button class="nav-btn" onclick="showSection('b5')">← Sciences</button><button class="nav-btn primary" onclick="showSection('b7')">Sport →</button></div>
+<div class="nb"><button class="nbtn" onclick="go('b5')">← Climat</button><button class="nbtn pr" onclick="go('b7')">Sport →</button></div>
 </div>
 
-<!-- ═══════════ BLOC 7 — SPORT ═══════════ -->
+<!-- ═══ BLOC 7 — SPORT ═══ -->
 <div class="section" id="sec-b7">
-<div class="section-header b7"><div class="bloc-num">Bloc 7 — Sport</div><h2>⚽ Sport</h2><p>Football, rugby, tennis, JO, grands événements sportifs...</p></div>
+<div class="sh c7"><div class="bn">Bloc 7</div><h2>⚽ Sport</h2><p>PSG, 6 Nations, Tour de France, Roland-Garros, Super Bowl, Mondial 2026.</p></div>
 
-<div class="lesson" id="l7-1"><div class="lesson-head" onclick="toggleLesson('l7-1')"><h3>Événements sportifs majeurs</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="fact fact-hot"><span class="date">2025</span><strong>PSG remporte la Ligue des Champions</strong> — Première victoire en Champions League pour le Paris Saint-Germain.</div>
-<div class="fact fact-hot"><span class="date">2025</span><strong>France gagne le Tournoi des 6 Nations (rugby)</strong> — La finale France-Écosse = émission la plus regardée de l'année à la TV française.</div>
-<div class="fact"><span class="date">2025</span><strong>Seine baignable à Paris</strong> — La baignade redevient possible dans la Seine, après les JO 2024.</div>
-<div class="fact"><span class="date">Février 2026</span><strong>JO d'hiver Milan-Cortina 2026</strong> — Jeux Olympiques d'hiver en Italie (6-22 février 2026).</div>
+<div class="ls" id="l7a"><div class="lh" onclick="tg('l7a')"><h3>Tous les résultats sportifs</h3><span class="ar">▼</span></div><div class="lb">
+<div class="f hot"><span class="d">31 mai 2025</span><strong>PSG remporte la Ligue des Champions</strong> — 5-0 vs Inter Milan à Munich. 1ère de l'histoire du PSG. Plus large écart en finale de C1. <strong>Désiré Doué</strong> (19 ans) : 2 buts + 1 passe.</div>
+<div class="f"><span class="d">9 juillet 2025</span>PSG bat Real Madrid 4-0 en demi-finale de la Coupe du monde des clubs.</div>
+<div class="f hot"><span class="d">13 juillet 2025</span><strong>Chelsea bat PSG 3-0</strong> en finale de la Coupe du monde des clubs.</div>
 
-<div class="tip"><div class="tip-title">💡 À SURVEILLER</div><p>Les JO d'hiver de Milan-Cortina (février 2026) sont dans la période du concours. Les médaillés français et les résultats principaux pourraient tomber au concours du 8 avril.</p></div>
+<div class="trap"><div class="trap-t">⚠️ PIÈGE CLASSIQUE</div><p>Ne pas confondre : PSG gagne la <strong>Champions League</strong> mais perd la <strong>Coupe du monde des clubs</strong> (Chelsea).</p></div>
+
+<div class="f hot"><span class="d">Tour de France 2025</span><strong>Tadej Pogačar</strong> remporte son <strong>4e Tour</strong>.</div>
+<div class="f hot"><span class="d">Roland-Garros 2025</span><strong>Carlos Alcaraz</strong> bat Jannik Sinner en finale.</div>
+<div class="f"><span class="d">Super Bowl LIX</span><strong>Philadelphia Eagles</strong> battent Kansas City Chiefs <strong>40-22</strong>. MVP : <strong>Jalen Hurts</strong>.</div>
+<div class="f"><span class="d">14 novembre 2025</span>France qualifiée pour le <strong>Mondial 2026</strong> (4-0 vs Ukraine).</div>
+<div class="f hot"><span class="d">14 mars 2026</span><strong>France remporte le Tournoi des 6 Nations</strong> — 48-46 vs Angleterre. <strong>Louis Bielle-Biarrey</strong> : 4 essais dans le match, <strong>record de 9 essais</strong> dans une édition.</div>
+<div class="f"><span class="d">26 mars 2026</span>France bat Brésil 2-1 à Boston (amical). <strong>Mbappé</strong> à 57 buts en sélection (à 1 but du record de Giroud).</div>
+<div class="f"><span class="d">2 février 2026</span>La NFL annonce son <strong>1er match en France</strong> au Stade de France à l'automne 2026.</div>
 </div></div>
 
-<!-- QUIZ FINAL -->
-<div class="lesson" id="l7-quiz"><div class="lesson-head" onclick="toggleLesson('l7-quiz')"><h3>🧪 Quiz Final — 20 Questions type SESAME</h3><span class="arrow">▼</span></div><div class="lesson-body">
-<div class="quiz-box"><h4>Simule les conditions : 45 secondes par question</h4>
+<div class="nb"><button class="nbtn" onclick="go('b6')">← Culture</button><button class="nbtn pr" onclick="go('b8')">Société →</button></div>
+</div>
 
-<div class="quiz-q" data-correct="C"><p>1. Qui a remporté le Prix Nobel de la Paix 2025 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) Volodymyr Zelensky</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Donald Trump</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) María Corina Machado</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Greta Thunberg</span></div><div class="explanation">✅ María Corina Machado, opposante vénézuélienne, pour sa lutte pour la démocratie au Venezuela.</div></div>
+<!-- ═══ BLOC 8 — SOCIÉTÉ ═══ -->
+<div class="section" id="sec-b8">
+<div class="sh c8"><div class="bn">Bloc 8</div><h2>📱 Société, Santé, Numérique</h2><p>Réseaux sociaux, santé mentale, PFAS, mode, tourisme, gastronomie, jeux vidéo.</p></div>
 
-<div class="quiz-q" data-correct="A"><p>2. Quel film a remporté l'Oscar du meilleur film en 2026 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) One Battle After Another</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Sinners</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) Frankenstein</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Hamnet</span></div><div class="explanation">✅ "One Battle After Another" de Paul Thomas Anderson — 6 Oscars au total.</div></div>
+<div class="ls" id="l8a"><div class="lh" onclick="tg('l8a')"><h3>Réseaux sociaux & Numérique</h3><span class="ar">▼</span></div><div class="lb">
+<div class="f hot"><span class="d">26-27 janvier 2026</span>L'Assemblée adopte une loi pour <strong>interdire les réseaux sociaux aux moins de 15 ans</strong>.</div>
+<div class="f"><span class="d">31 mars 2026</span>Le Sénat approuve une version remaniée (limitation aux plateformes "nocives"). Entrée en vigueur visée : <strong>rentrée septembre 2026</strong>.</div>
+<div class="f"><span class="d">Contexte international</span>Autriche : interdiction -14 ans. Indonésie : -16 ans (70 millions d'enfants). Australie : enquête sur TikTok, Instagram, YouTube pour les -16 ans.</div>
+<div class="f"><span class="d">13 janvier 2026</span>Rapport parlementaire : <strong>78 recommandations</strong> contre les dérives des influenceurs. Proposition de <strong>suspension de TikTok Shop</strong>.</div>
+<div class="f"><span class="d">31 mars 2025</span>Lancement de <strong>TikTok Shop en France</strong>.</div>
+<div class="f"><span class="d">26 mars 2026</span>Loi adoptée à l'unanimité pour aider la presse à récupérer les rémunérations dues par les plateformes.</div>
+</div></div>
 
-<div class="quiz-q" data-correct="B"><p>3. Qui est Premier ministre de la France en avril 2026 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) François Bayrou</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Sébastien Lecornu</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) Michel Barnier</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Édouard Philippe</span></div><div class="explanation">✅ Sébastien Lecornu, nommé en septembre 2025 après la chute de Bayrou. 5e Premier ministre en 21 mois.</div></div>
+<div class="ls" id="l8b"><div class="lh" onclick="tg('l8b')"><h3>Santé mentale & PFAS</h3><span class="ar">▼</span></div><div class="lb">
+<div class="f hot"><span class="d">2026</span><strong>Santé mentale = grande cause nationale</strong> en France. 1 personne sur 5 concernée par un trouble psychique.</div>
+<div class="f"><span class="d">10 octobre 2025</span>1/3 des jeunes présentent des signes de troubles anxieux/dépressifs. 9% passent +7h/jour sur écrans → 60% de risque de détresse.</div>
+<div class="f"><span class="d">13 janvier 2026</span>L'Anses alerte sur les effets négatifs des réseaux sociaux : sommeil dégradé, coucher tardif.</div>
+<h4>PFAS ("polluants éternels")</h4>
+<div class="f"><span class="d">1er janvier 2026</span>Loi française interdisant certains usages des PFAS (cosmétiques, chaussures, vêtements, farts de ski).</div>
+<div class="f"><span class="d">29 janvier 2026</span>Étude UE : pollution PFAS pourrait coûter jusqu'à <strong>1 700 milliards €</strong> à l'UE.</div>
+<div class="f"><span class="d">26 mars 2026</span>Rapport scientifique européen recommande une restriction large des PFAS.</div>
+</div></div>
 
-<div class="quiz-q" data-correct="D"><p>4. Comment s'appelle le jour où Trump a imposé des tarifs douaniers massifs (2 avril 2025) ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) Freedom Day</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Independence Day</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) America First Day</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Liberation Day</span></div><div class="explanation">✅ "Liberation Day" — tarifs de 10% minimum sur presque tous les pays du monde.</div></div>
+<div class="ls" id="l8c"><div class="lh" onclick="tg('l8c')"><h3>Mode, Tourisme, Gastronomie, Jeux vidéo</h3><span class="ar">▼</span></div><div class="lb">
+<h4>Mode & Luxe</h4>
+<div class="f"><span class="d">2025</span>Dior, Chanel, Balenciaga : 1ères collections de nouveaux directeurs artistiques.</div>
+<div class="f"><span class="d">17 février 2026</span>Enquête européenne ouverte contre <strong>Shein</strong> (produits illégaux, design addictif).</div>
+<div class="f"><span class="d">2025</span>Ventes de vêtements en France : <strong>-1,6%</strong>. Shein et Vinted pèsent sur le secteur.</div>
 
-<div class="quiz-q" data-correct="C"><p>5. Quel écrivain a reçu le Nobel de Littérature 2025 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) Michel Houellebecq</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Haruki Murakami</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) László Krasznahorkai</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Salman Rushdie</span></div><div class="explanation">✅ László Krasznahorkai (Hongrie) — tradition littéraire d'Europe centrale.</div></div>
+<h4>Tourisme</h4>
+<div class="f"><span class="d">2025</span>France : <strong>102 millions</strong> de visiteurs internationaux (+2M vs 2024). Recettes : <strong>77,5 milliards €</strong> (+9%).</div>
 
-<div class="quiz-q" data-correct="A"><p>6. Quel club a remporté la Ligue des Champions en 2025 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) PSG</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Real Madrid</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) Manchester City</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Bayern Munich</span></div><div class="explanation">✅ Le PSG remporte sa première Ligue des Champions en 2025.</div></div>
+<h4>Gastronomie</h4>
+<div class="f"><span class="d">10 mars 2026</span><strong>L'Ambroisie</strong> perd sa 3e étoile Michelin.</div>
+<div class="f"><span class="d">16 mars 2026</span>Guide Michelin 2026 : <strong>668 restaurants étoilés</strong>. Seul nouveau 3 étoiles : <strong>Michaël Arnoult</strong> (Les Morainières, Savoie).</div>
 
-<div class="quiz-q" data-correct="B"><p>7. Pour quel film Michael B. Jordan a-t-il gagné l'Oscar du meilleur acteur ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) Creed IV</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Sinners</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) One Battle After Another</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Black Panther 3</span></div><div class="explanation">✅ "Sinners" de Ryan Coogler — film de vampires. Jordan joue des jumeaux. Record de 16 nominations.</div></div>
+<h4>Jeux vidéo</h4>
+<div class="f"><span class="d">21 novembre 2025</span><strong>Ubisoft</strong> regroupe Assassin's Creed, Far Cry, Rainbow Six. <strong>Tencent</strong> prend 26,32% pour <strong>1,16 milliard €</strong>. Plan d'économies de 100M€.</div>
 
-<div class="quiz-q" data-correct="D"><p>8. Quel événement spectaculaire s'est produit au Louvre en octobre 2025 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) Un incendie</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Une inondation</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) Une manifestation</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Un vol de joyaux</span></div><div class="explanation">✅ Vol spectaculaire de 8 joyaux du XIXe siècle en 8 minutes. Butin : 88 millions €. Bijoux toujours introuvables.</div></div>
+<h4>Musique</h4>
+<div class="f"><span class="d">17 mai 2025</span>Décès du rappeur <strong>Werenoi</strong> (31 ans).</div>
+<div class="f"><span class="d">30 mars 2026</span><strong>Céline Dion</strong> annonce son retour sur scène : 10 concerts à Paris (sept-oct 2026).</div>
 
-<div class="quiz-q" data-correct="A"><p>9. Quel pays a accueilli le G20 en 2025, une première pour son continent ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) Afrique du Sud</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Nigéria</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) Brésil</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Inde</span></div><div class="explanation">✅ G20 à Johannesburg — première fois qu'un pays africain accueille le G20.</div></div>
+<h4>Éducation</h4>
+<div class="f"><span class="d">24 février 2026</span>FAGE : <strong>1/4 des étudiants</strong> vivent avec moins de 100€/mois après le loyer.</div>
+</div></div>
 
-<div class="quiz-q" data-correct="C"><p>10. Quelle réforme Sébastien Lecornu a-t-il suspendu en octobre 2025 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) Réforme du bac</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Réforme de l'immigration</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) Réforme des retraites</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Réforme de la santé</span></div><div class="explanation">✅ Suspension de la réforme des retraites de 2023 jusqu'à la présidentielle 2027. Durée d'assurance maintenue à 170 trimestres.</div></div>
+<div class="nb"><button class="nbtn" onclick="go('b7')">← Sport</button><button class="nbtn pr" onclick="go('quiz')">Quiz →</button></div>
+</div>
 
-<div class="quiz-q" data-correct="B"><p>11. Quel économiste français a proposé une taxe mondiale sur les ultra-riches ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) Thomas Piketty</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Gabriel Zucman</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) Philippe Aghion</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Esther Duflo</span></div><div class="explanation">✅ Gabriel Zucman — la "taxe Zucman" sur le patrimoine des ultra-riches. Grand débat en France et au niveau international.</div></div>
+<!-- ═══ QUIZ FINAL ═══ -->
+<div class="section" id="sec-quiz">
+<div class="sh c1"><div class="bn">Quiz Final</div><h2>🧪 25 Questions type SESAME</h2><p>Simule les conditions : 45 secondes par question maximum.</p></div>
 
-<div class="quiz-q" data-correct="D"><p>12. Combien de nominations record le film "Sinners" a-t-il obtenu aux Oscars 2026 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) 12</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) 14</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) 15</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) 16</span></div><div class="explanation">✅ 16 nominations — record absolu de l'histoire des Oscars, dépassant "Titanic" et "La La Land" (14).</div></div>
+<div class="qb"><h4>Questions vérifiées — sources fiables</h4>
 
-<div class="quiz-q" data-correct="A"><p>13. Quel sommet sur l'IA s'est tenu à Paris en février 2025 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) AI Action Summit</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) AI Ethics Forum</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) Digital Paris Forum</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Tech4Good Summit</span></div><div class="explanation">✅ AI Action Summit — L'UE annonce "InvestAI" (200 milliards €). Discussion sur régulation et éthique de l'IA.</div></div>
+<div class="qq" data-correct="B"><p>1. Qui est Premier ministre en avril 2026 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Bayrou</span><span class="o" data-val="B" onclick="ck(this)">B) Lecornu</span><span class="o" data-val="C" onclick="ck(this)">C) Barnier</span><span class="o" data-val="D" onclick="ck(this)">D) Faure</span></div><div class="ex">✅ Sébastien Lecornu, nommé en septembre 2025 après la chute de Bayrou sur un vote de confiance.</div></div>
 
-<div class="quiz-q" data-correct="C"><p>14. Quel pays a eu des élections avec l'AfD en 2e position en février 2025 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) France</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Italie</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) Allemagne</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Autriche</span></div><div class="explanation">✅ Élections du Bundestag (23 février 2025). CDU/CSU gagne, AfD (extrême droite, pro-Russie, anti-UE) arrive 2e.</div></div>
+<div class="qq" data-correct="C"><p>2. Comment Bayrou a-t-il perdu le pouvoir ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Motion de censure</span><span class="o" data-val="B" onclick="ck(this)">B) Démission volontaire</span><span class="o" data-val="C" onclick="ck(this)">C) Vote de confiance perdu</span><span class="o" data-val="D" onclick="ck(this)">D) Dissolution</span></div><div class="ex">✅ Premier gouvernement de la Ve République renversé par un vote de confiance défavorable.</div></div>
 
-<div class="quiz-q" data-correct="B"><p>15. Quel est le taux d'abstention record aux municipales françaises de mars 2026 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) 35%</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) 43%</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) 51%</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) 38%</span></div><div class="explanation">✅ 43% d'abstention — record pour des municipales sous la Ve République (hors Covid). "Fatigue démocratique".</div></div>
+<div class="qq" data-correct="A"><p>3. Quel film a dominé les César 2025 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Emilia Pérez</span><span class="o" data-val="B" onclick="ck(this)">B) L'Attachement</span><span class="o" data-val="C" onclick="ck(this)">C) Sinners</span><span class="o" data-val="D" onclick="ck(this)">D) Hamnet</span></div><div class="ex">✅ Emilia Pérez de Jacques Audiard — 7 César à la 50e cérémonie.</div></div>
 
-<div class="quiz-q" data-correct="A"><p>16. Quelle équipe française a gagné le Tournoi des 6 Nations 2025 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) France</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Irlande</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) Angleterre</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Écosse</span></div><div class="explanation">✅ La France remporte le Tournoi des 6 Nations. Finale France-Écosse = programme TV le plus regardé de 2025.</div></div>
+<div class="qq" data-correct="D"><p>4. Qui a reçu la Palme d'or à Cannes 2025 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Jacques Audiard</span><span class="o" data-val="B" onclick="ck(this)">B) Joachim Trier</span><span class="o" data-val="C" onclick="ck(this)">C) Juliette Binoche</span><span class="o" data-val="D" onclick="ck(this)">D) Jafar Panahi</span></div><div class="ex">✅ Jafar Panahi pour "Un simple accident". Retour après 14 ans d'interdiction de sortie d'Iran.</div></div>
 
-<div class="quiz-q" data-correct="D"><p>17. Quel accord commercial a provoqué la colère des agriculteurs français fin 2025 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) CETA</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) TTIP</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) ASEAN</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Mercosur</span></div><div class="explanation">✅ Accord UE-Mercosur — libre-échange avec l'Amérique du Sud. Concurrence déloyale sur viande, volaille, sucre.</div></div>
+<div class="qq" data-correct="B"><p>5. Qui a gagné le Goncourt 2025 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Krasznahorkai</span><span class="o" data-val="B" onclick="ck(this)">B) Laurent Mauvignier</span><span class="o" data-val="C" onclick="ck(this)">C) Michel Houellebecq</span><span class="o" data-val="D" onclick="ck(this)">D) Annie Ernaux</span></div><div class="ex">✅ Laurent Mauvignier pour "La Maison vide" (4 novembre 2025).</div></div>
 
-<div class="quiz-q" data-correct="C"><p>18. Quelle nouvelle catégorie a été créée aux Oscars 2026 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) Best Stunt</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Best Voice Acting</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) Best Casting</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Best Debut</span></div><div class="explanation">✅ Best Casting — première nouvelle catégorie en 25 ans. Gagnée par Cassandra Kulukundis.</div></div>
+<div class="qq" data-correct="A"><p>6. Quel est le score du PSG en finale de Champions League 2025 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) 5-0</span><span class="o" data-val="B" onclick="ck(this)">B) 3-1</span><span class="o" data-val="C" onclick="ck(this)">C) 2-0</span><span class="o" data-val="D" onclick="ck(this)">D) 4-2</span></div><div class="ex">✅ PSG 5-0 Inter Milan à Munich. Plus large écart de l'histoire d'une finale de C1.</div></div>
 
-<div class="quiz-q" data-correct="A"><p>19. Philippe Aghion, co-lauréat du Nobel d'Économie 2025, est professeur dans quelle institution française ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) Collège de France</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Sciences Po</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) HEC Paris</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Sorbonne</span></div><div class="explanation">✅ Philippe Aghion — Collège de France et INSEAD. Nobel pour la théorie de la croissance par "destruction créatrice".</div></div>
+<div class="qq" data-correct="C"><p>7. Qui a gagné la Coupe du monde des clubs 2025 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) PSG</span><span class="o" data-val="B" onclick="ck(this)">B) Real Madrid</span><span class="o" data-val="C" onclick="ck(this)">C) Chelsea</span><span class="o" data-val="D" onclick="ck(this)">D) Inter Milan</span></div><div class="ex">✅ Chelsea bat PSG 3-0 en finale. Piège classique : PSG gagne la C1 mais perd la Coupe du monde des clubs.</div></div>
 
-<div class="quiz-q" data-correct="B"><p>20. Où se tiennent les JO d'hiver 2026 ?</p><div class="options"><span class="opt" data-val="A" onclick="checkQuiz(this)">A) Pékin</span><span class="opt" data-val="B" onclick="checkQuiz(this)">B) Milan-Cortina</span><span class="opt" data-val="C" onclick="checkQuiz(this)">C) Salt Lake City</span><span class="opt" data-val="D" onclick="checkQuiz(this)">D) Sapporo</span></div><div class="explanation">✅ Milan-Cortina (Italie) — du 6 au 22 février 2026.</div></div>
+<div class="qq" data-correct="D"><p>8. Qui a gagné le Tour de France 2025 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Vingegaard</span><span class="o" data-val="B" onclick="ck(this)">B) Evenepoel</span><span class="o" data-val="C" onclick="ck(this)">C) Alcaraz</span><span class="o" data-val="D" onclick="ck(this)">D) Pogačar</span></div><div class="ex">✅ Tadej Pogačar — son 4e Tour de France.</div></div>
 
-</div></div></div>
+<div class="qq" data-correct="B"><p>9. Quelle peine Marine Le Pen a-t-elle reçue en mars 2025 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) 3 ans d'inéligibilité</span><span class="o" data-val="B" onclick="ck(this)">B) 5 ans d'inéligibilité + 4 ans de prison</span><span class="o" data-val="C" onclick="ck(this)">C) Acquittement</span><span class="o" data-val="D" onclick="ck(this)">D) Amende de 2M€</span></div><div class="ex">✅ 5 ans d'inéligibilité (immédiate) + 4 ans de prison dont 2 ferme. Affaire des assistants parlementaires.</div></div>
 
-<div class="nav-buttons"><button class="nav-btn" onclick="showSection('b6')">← Culture</button><button class="nav-btn primary" onclick="showSection('home')">Retour à l'accueil</button></div>
+<div class="qq" data-correct="A"><p>10. Où s'est tenue la COP30 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Belém, Brésil</span><span class="o" data-val="B" onclick="ck(this)">B) Dubaï</span><span class="o" data-val="C" onclick="ck(this)">C) Bakou</span><span class="o" data-val="D" onclick="ck(this)">D) Nairobi</span></div><div class="ex">✅ Belém, en Amazonie brésilienne. "COP de l'Amazonie". Adoption du "Belém Package".</div></div>
+
+<div class="qq" data-correct="C"><p>11. Qu'est-ce que le CBAM/MACF ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Monnaie européenne</span><span class="o" data-val="B" onclick="ck(this)">B) Alliance militaire</span><span class="o" data-val="C" onclick="ck(this)">C) Taxe carbone aux frontières</span><span class="o" data-val="D" onclick="ck(this)">D) Fonds pour les réfugiés</span></div><div class="ex">✅ Mécanisme d'ajustement carbone aux frontières. Fait payer un coût carbone aux importations très émettrices. En régime définitif depuis le 1er janvier 2026.</div></div>
+
+<div class="qq" data-correct="D"><p>12. Qui a gagné le Super Bowl LIX ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Kansas City Chiefs</span><span class="o" data-val="B" onclick="ck(this)">B) San Francisco 49ers</span><span class="o" data-val="C" onclick="ck(this)">C) Dallas Cowboys</span><span class="o" data-val="D" onclick="ck(this)">D) Philadelphia Eagles</span></div><div class="ex">✅ Philadelphia Eagles battent Kansas City Chiefs 40-22. MVP : Jalen Hurts.</div></div>
+
+<div class="qq" data-correct="B"><p>13. Quel joueur français a battu un record d'essais au 6 Nations 2026 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Antoine Dupont</span><span class="o" data-val="B" onclick="ck(this)">B) Louis Bielle-Biarrey</span><span class="o" data-val="C" onclick="ck(this)">C) Thomas Ramos</span><span class="o" data-val="D" onclick="ck(this)">D) Damian Penaud</span></div><div class="ex">✅ Louis Bielle-Biarrey — 4 essais vs Angleterre + record de 9 essais dans une édition du Tournoi.</div></div>
+
+<div class="qq" data-correct="A"><p>14. Quel vol spectaculaire a eu lieu au Louvre le 19 octobre 2025 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Vol de joyaux de la Couronne (88M€)</span><span class="o" data-val="B" onclick="ck(this)">B) Vol de la Joconde</span><span class="o" data-val="C" onclick="ck(this)">C) Vol de tableaux impressionnistes</span><span class="o" data-val="D" onclick="ck(this)">D) Vol de sculptures égyptiennes</span></div><div class="ex">✅ 8 joyaux de la Couronne volés en 7 minutes dans la galerie d'Apollon. Monte-charge, disqueuses. Suspects arrêtés mais bijoux toujours introuvables.</div></div>
+
+<div class="qq" data-correct="C"><p>15. Qui a gagné Roland-Garros 2025 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Djokovic</span><span class="o" data-val="B" onclick="ck(this)">B) Sinner</span><span class="o" data-val="C" onclick="ck(this)">C) Alcaraz</span><span class="o" data-val="D" onclick="ck(this)">D) Medvedev</span></div><div class="ex">✅ Carlos Alcaraz bat Jannik Sinner en finale.</div></div>
+
+<div class="qq" data-correct="B"><p>16. Quelle loi française concerne les réseaux sociaux en 2026 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Interdiction -12 ans</span><span class="o" data-val="B" onclick="ck(this)">B) Interdiction -15 ans</span><span class="o" data-val="C" onclick="ck(this)">C) Interdiction -18 ans</span><span class="o" data-val="D" onclick="ck(this)">D) Interdiction -10 ans</span></div><div class="ex">✅ Interdiction des réseaux sociaux aux moins de 15 ans. Adoptée par l'Assemblée (nuit du 26-27 janvier 2026). Entrée en vigueur visée : rentrée septembre 2026.</div></div>
+
+<div class="qq" data-correct="A"><p>17. Quel est le meilleur film aux César 2026 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) L'Attachement</span><span class="o" data-val="B" onclick="ck(this)">B) Emilia Pérez</span><span class="o" data-val="C" onclick="ck(this)">C) Nouvelle Vague</span><span class="o" data-val="D" onclick="ck(this)">D) Dossier 137</span></div><div class="ex">✅ L'Attachement de Carine Tardieu. Ne confonds pas avec César 2025 = Emilia Pérez.</div></div>
+
+<div class="qq" data-correct="D"><p>18. Quel porte-avions nucléaire français a été annoncé en mars 2026 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Charles de Gaulle II</span><span class="o" data-val="B" onclick="ck(this)">B) Richelieu</span><span class="o" data-val="C" onclick="ck(this)">C) Clemenceau</span><span class="o" data-val="D" onclick="ck(this)">D) France Libre</span></div><div class="ex">✅ Porte-avions nucléaire "France Libre", annoncé le 18 mars 2026 dans le cadre de l'autonomie stratégique.</div></div>
+
+<div class="qq" data-correct="C"><p>19. Combien de visiteurs internationaux la France a-t-elle accueillis en 2025 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) 89 millions</span><span class="o" data-val="B" onclick="ck(this)">B) 95 millions</span><span class="o" data-val="C" onclick="ck(this)">C) 102 millions</span><span class="o" data-val="D" onclick="ck(this)">D) 110 millions</span></div><div class="ex">✅ 102 millions de visiteurs internationaux en 2025 (+2M vs 2024). Recettes : 77,5 milliards €.</div></div>
+
+<div class="qq" data-correct="B"><p>20. Quel géant chinois a pris 26% d'Ubisoft ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Alibaba</span><span class="o" data-val="B" onclick="ck(this)">B) Tencent</span><span class="o" data-val="C" onclick="ck(this)">C) ByteDance</span><span class="o" data-val="D" onclick="ck(this)">D) Huawei</span></div><div class="ex">✅ Tencent prend 26,32% d'Ubisoft pour 1,16 milliard € (novembre 2025).</div></div>
+
+<div class="qq" data-correct="A"><p>21. Qu'est-ce que les PFAS ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Polluants éternels</span><span class="o" data-val="B" onclick="ck(this)">B) Pesticides agricoles</span><span class="o" data-val="C" onclick="ck(this)">C) Plastiques recyclables</span><span class="o" data-val="D" onclick="ck(this)">D) Engrais chimiques</span></div><div class="ex">✅ PFAS = "polluants éternels". Loi française en vigueur depuis le 1er janvier 2026 interdisant certains usages. Coût potentiel pour l'UE : 1 700 milliards €.</div></div>
+
+<div class="qq" data-correct="D"><p>22. L'Ambroisie à Paris a perdu combien d'étoiles Michelin en 2026 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) 0 (fermé)</span><span class="o" data-val="B" onclick="ck(this)">B) 2</span><span class="o" data-val="C" onclick="ck(this)">C) Toutes</span><span class="o" data-val="D" onclick="ck(this)">D) Sa 3e étoile</span></div><div class="ex">✅ L'Ambroisie perd sa 3e étoile au Guide Michelin 2026 (10 mars 2026).</div></div>
+
+<div class="qq" data-correct="C"><p>23. Quelle est la grande cause nationale en France en 2026 ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Le logement</span><span class="o" data-val="B" onclick="ck(this)">B) L'éducation</span><span class="o" data-val="C" onclick="ck(this)">C) La santé mentale</span><span class="o" data-val="D" onclick="ck(this)">D) L'environnement</span></div><div class="ex">✅ La santé mentale est déclarée grande cause nationale en 2026. 1 Français sur 5 concerné par un trouble psychique.</div></div>
+
+<div class="qq" data-correct="A"><p>24. Quelle enquête européenne a été ouverte contre Shein ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) Produits illégaux et design addictif</span><span class="o" data-val="B" onclick="ck(this)">B) Fraude fiscale</span><span class="o" data-val="C" onclick="ck(this)">C) Espionnage</span><span class="o" data-val="D" onclick="ck(this)">D) Travail des enfants</span></div><div class="ex">✅ Enquête ouverte le 17 février 2026 : vente de produits illégaux, design addictif de l'app, opacité des recommandations.</div></div>
+
+<div class="qq" data-correct="B"><p>25. France-Angleterre au 6 Nations 2026, quel score ?</p><div class="os"><span class="o" data-val="A" onclick="ck(this)">A) 32-28</span><span class="o" data-val="B" onclick="ck(this)">B) 48-46</span><span class="o" data-val="C" onclick="ck(this)">C) 24-19</span><span class="o" data-val="D" onclick="ck(this)">D) 36-30</span></div><div class="ex">✅ France bat Angleterre 48-46 au Stade de France le 14 mars 2026.</div></div>
+</div>
+
+<div class="nb"><button class="nbtn" onclick="go('b8')">← Société</button><button class="nbtn pr" onclick="go('home')">Accueil</button></div>
 </div>
 
 <script>
-function showSection(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));document.getElementById('sec-'+id).classList.add('active');document.getElementById('nav-'+id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});const map={home:0,b1:14,b2:28,b3:42,b4:56,b5:70,b6:85,b7:100};document.getElementById('progressBar').style.width=(map[id]||0)+'%'}
-function toggleLesson(id){document.getElementById(id).classList.toggle('open')}
-function checkQuiz(el){const q=el.closest('.quiz-q');if(q.classList.contains('answered'))return;q.classList.add('answered');const correct=q.dataset.correct;const val=el.dataset.val;if(val===correct){el.classList.add('correct')}else{el.classList.add('wrong');q.querySelector(`.opt[data-val="${correct}"]`).classList.add('correct')}q.querySelectorAll('.opt').forEach(o=>{if(!o.classList.contains('correct')&&!o.classList.contains('wrong'))o.classList.add('disabled')});q.querySelector('.explanation').style.display='block'}
+function go(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));document.getElementById('sec-'+id).classList.add('active');document.getElementById('nav-'+id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});const m={home:0,b1:11,b2:22,b3:33,b4:44,b5:55,b6:66,b7:77,b8:88,quiz:100};document.getElementById('pb').style.width=(m[id]||0)+'%'}
+function tg(id){document.getElementById(id).classList.toggle('open')}
+function ck(el){const q=el.closest('.qq');if(q.classList.contains('done'))return;q.classList.add('done');const c=q.dataset.correct,v=el.dataset.val;if(v===c){el.classList.add('c')}else{el.classList.add('w');q.querySelector(`.o[data-val="${c}"]`).classList.add('c')}q.querySelectorAll('.o').forEach(o=>{if(!o.classList.contains('c')&&!o.classList.contains('w'))o.classList.add('dis')});q.querySelector('.ex').style.display='block'}
 </script>
 </body>
 </html>
